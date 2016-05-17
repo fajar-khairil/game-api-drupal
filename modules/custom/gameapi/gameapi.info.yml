@@ -1,0 +1,8 @@
+name: GameAPI
+description: 'GameAPI for 7Langit Test'
+type: module
+package: Custom
+core: '8.x'
+
+dependencies:
+  - datetime:datetime

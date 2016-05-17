@@ -1,0 +1,8 @@
+gameapi.content:
+  path: '/test'
+  defaults:
+    _controller: '\Drupal\gameapi\Controller\UserController::content'
+    _title: 'Hello World'
+
+  requirements:
+    _permission: 'access content'
