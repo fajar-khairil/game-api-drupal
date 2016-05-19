@@ -2,15 +2,15 @@
 
 namespace Drupal\gameapi\Controller;
 
-use Drupal\Core\Controller\ControllerBase;
 use Drupal\user\Entity\User;
-use Symfony\Component\HttpFoundation\Response;
 
 class UserController extends ControllerBase
 {
 	public function postRegister()
 	{
 		$request = \Drupal::request();
+		// fetch expected format from consumer default to json if not supplied
+		$format = $request->get('_format','json');
 
 		try
 		{
@@ -29,17 +29,19 @@ class UserController extends ControllerBase
 			$user->activate();
 			//Save user
 			$user->save();
+
+			// function location at => /home/fajar/www/dru-game-api/core/modules/user/user.module function _user_mail_notify()
 			_user_mail_notify('status_activated',$user);
 
 			return $this->serialize(
-				['Result' => "OK",'Message' => 'User Berhasil registrasi'],
-				$request->get('_format','json')
+				'Registrasi user berhasil',
+				$format
 			);
 		}
 		catch(\Exception $e)
 		{
 			// send 500 status code
-			return new Response($e->getMessage(),500);	
+			return $this->renderError($e->getMessage(),$format);	
 		}
 	}
 
@@ -56,11 +58,5 @@ class UserController extends ControllerBase
 	public function resetPassword()
 	{
 
-	}
-
-	protected function serialize($data,$format)
-	{
-		$serializer = \Drupal::service('serializer');
-		return new Response($serializer->serialize($data,$format));
 	}
 }
