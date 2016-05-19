@@ -1,6 +1,0 @@
-gameapi.admin:
-  title: 'add score'
-  description: 'Add Score'
-  parent: system.admin_config_development
-  route_name: gameapi.content
-  weight: 100

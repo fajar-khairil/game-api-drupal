@@ -1,8 +1,8 @@
-gameapi.content:
-  path: '/test'
+gameapi.user.register:
+  # This path takes dynamic arguments, which are enclosed in { }.
+  path: '/api/register'
   defaults:
-    _controller: '\Drupal\gameapi\Controller\UserController::content'
-    _title: 'Hello World'
-
+    # Because this route does not return HTML, use _controller.
+    _controller: '\Drupal\gameapi\Controller\UserController::postRegister'
   requirements:
     _permission: 'access content'

@@ -70,7 +70,7 @@ class ResourceRoutes extends RouteSubscriberBase {
     if (count($resources) != count($enabled_resources)) {
       trigger_error('rest.settings lists resources relying on the following missing plugins: ' . implode(', ', array_keys(array_diff_key($resources, $enabled_resources))));
     }
-
+    
     // Iterate over all enabled resource plugins.
     foreach ($enabled_resources as $id => $enabled_methods) {
       $plugin = $this->manager->getInstance(array('id' => $id));

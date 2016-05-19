@@ -1,0 +1,8 @@
+resources:
+  user_register_resource:
+    POST:
+      supported_formats:
+        - json
+        - xml
+      supported_auth:
+        - cookie
